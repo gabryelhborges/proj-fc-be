@@ -34,7 +34,7 @@ public class AccessController {
     }
 
     @PostMapping("cadastro-cidadao")
-    public ResponseEntity<Object> cadastroCidadao(Usuario u){
+    public ResponseEntity<Object> cadastroCidadao(@RequestBody Usuario u){
         return ResponseEntity.ok(usuarioRep.save(u));
     }
 }
