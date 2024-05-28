@@ -3,8 +3,9 @@ package unoeste.fipp.ativooperante_be.security;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
-@Configuration //Essa anotacao define queessa classe é um filtro
+@Configuration //Essa anotacao define que essa classe é um filtro
 public class FilterConfiguration {
 
     @Bean

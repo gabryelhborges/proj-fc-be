@@ -18,9 +18,9 @@ import unoeste.fipp.ativooperante_be.services.TipoService;
 - Visualizar feedback: +- OK
  */
 
-@CrossOrigin
-@RequestMapping("apis/cidadao")
+
 @RestController
+@RequestMapping("apis/cidadao")
 public class CidadaoController {
     @Autowired
     private OrgaoService orgService;

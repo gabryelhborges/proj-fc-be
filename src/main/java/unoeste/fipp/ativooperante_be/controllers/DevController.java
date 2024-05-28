@@ -26,7 +26,7 @@ A ser consumida pelo administrador:
 - Listar denuncias de um determinado usuário cidadão:
 - Visualizar feedback:
 */
-
+@CrossOrigin
 @RequestMapping("secret/dev")
 @RestController
 public class DevController {

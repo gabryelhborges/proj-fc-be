@@ -14,7 +14,7 @@ import unoeste.fipp.ativooperante_be.db.entities.Usuario;
 
 public class JWTTokenProvider {
     private static final SecretKey CHAVE = Keys.hmacShaKeyFor(
-            "MINHANOVACHAVESECRETA_MINHANOVACHAVESECRETA".getBytes(StandardCharsets.UTF_8));
+            "MINHACHAVESECRETA_MINHACHAVESECRETA".getBytes(StandardCharsets.UTF_8));
 
     static public String getToken(Usuario usuario)
     {
