@@ -10,7 +10,7 @@ import unoeste.fipp.ativooperante_be.security.JWTTokenProvider;
 
 import java.util.List;
 
-
+@CrossOrigin
 @RestController
 @RequestMapping("apis/")
 public class AccessController {
