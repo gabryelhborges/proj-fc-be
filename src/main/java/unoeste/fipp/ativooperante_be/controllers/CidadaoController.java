@@ -18,7 +18,7 @@ import unoeste.fipp.ativooperante_be.services.TipoService;
 - Visualizar feedback: +- OK
  */
 
-
+@CrossOrigin
 @RestController
 @RequestMapping("apis/cidadao")
 public class CidadaoController {
