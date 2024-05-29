@@ -3,6 +3,7 @@ package unoeste.fipp.ativooperante_be.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import unoeste.fipp.ativooperante_be.db.entities.Denuncia;
+import unoeste.fipp.ativooperante_be.db.entities.Usuario;
 import unoeste.fipp.ativooperante_be.db.repositories.DenunciaRepository;
 
 import java.util.List;
@@ -28,5 +29,9 @@ public class DenunciaService {
 
     public Denuncia buscaPorId(Long id) {
         return repo.findById(id).get();
+    }
+
+    public List<Denuncia> buscaPorUsuario(Usuario user) {
+        return repo.findAllByUsuarioId(user.getId());
     }
 }

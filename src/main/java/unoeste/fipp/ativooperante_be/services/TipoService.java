@@ -34,4 +34,8 @@ public class TipoService {
     public Tipo buscaPorId(Long id) {
         return rep.findById(id).get();
     }
+
+    public Tipo consultaPorId(Long tipoId) {
+        return rep.findById(tipoId).get();
+    }
 }

@@ -18,4 +18,7 @@ public class UsuarioService {
         return usuarios;
     }
 
+    public Usuario consultaPorId(Long usuarioId) {
+        return repo.findById(usuarioId).get();
+    }
 }
