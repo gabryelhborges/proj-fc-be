@@ -3,11 +3,10 @@ package unoeste.fipp.ativooperante_be.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import unoeste.fipp.ativooperante_be.db.entities.Denuncia;
-import unoeste.fipp.ativooperante_be.services.DenunciaService;
-import unoeste.fipp.ativooperante_be.services.FeedbackService;
-import unoeste.fipp.ativooperante_be.services.OrgaoService;
-import unoeste.fipp.ativooperante_be.services.TipoService;
+import unoeste.fipp.ativooperante_be.db.entities.*;
+import unoeste.fipp.ativooperante_be.services.*;
+
+import java.util.List;
 
 /*
  A ser consumida pelo cidadao
@@ -30,10 +29,19 @@ public class CidadaoController {
     private DenunciaService denunciaService;
     @Autowired
     private FeedbackService feedbackService;
+    @Autowired
+    private UsuarioService usuarioService;
 
     @PostMapping("/add-denuncia")
-    public ResponseEntity<Object> addDenuncia(@RequestBody Denuncia denuncia){
+    public ResponseEntity<Object> addDenuncia(@RequestBody DenunciaDTO dto){
+        Usuario user = usuarioService.consultaPorId(dto.getUsuarioId());
+        Orgao org = orgService.consultaPorId(dto.getOrgaoId());
+        Tipo t = tipoService.consultaPorId(dto.getTipoId());
+
+        Denuncia denuncia = new Denuncia(0L, dto.getTitulo(), dto.getTexto(), dto.getUrgencia(), org, dto.getData(), t, user);
+
         Denuncia d = denunciaService.save(denuncia);
+
         if(d == null){
             return ResponseEntity.badRequest().body("Erro ao inserir denúncia!");
         }
@@ -43,15 +51,21 @@ public class CidadaoController {
     }
 
 
+
+
+
     //Listar todos
     @GetMapping("/get-all-orgaos")
     public ResponseEntity<Object> getAllOrgaos() {
         return ResponseEntity.ok(orgService.getAll());
     }
 
-    @GetMapping("/get-all-denuncias")
-    public ResponseEntity<Object> getAllDenuncias(){
-        return ResponseEntity.ok(denunciaService.getAll());
+    @GetMapping("/get-denuncias-cidadao")
+    public ResponseEntity<Object> getAllDenuncias(@RequestParam Long userId){
+        Usuario user = usuarioService.consultaPorId(userId);
+        List<Denuncia> denuncias;
+        denuncias= denunciaService.buscaPorUsuario(user);
+        return ResponseEntity.ok(denuncias);
     }
 
     @GetMapping("/get-all-tipos")
@@ -59,8 +73,9 @@ public class CidadaoController {
         return ResponseEntity.ok(tipoService.getAll());
     }
 
-    @GetMapping("/get-all-feedbacks")
-    public ResponseEntity<Object> getAllFeedbacks(){
+    @GetMapping("/get-feedbacks-cidadao")
+    public ResponseEntity<Object> getAllFeedbacks(@RequestParam Long userId){
+
         return ResponseEntity.ok(feedbackService.getAll());
     }
 }

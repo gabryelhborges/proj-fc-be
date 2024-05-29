@@ -34,4 +34,8 @@ public class OrgaoService {
     public Object buscaPorId(Long id) {
         return repo.findById(id).get();
     }
+
+    public Orgao consultaPorId(Long orgaoId) {
+        return repo.findById(orgaoId).get();
+    }
 }
