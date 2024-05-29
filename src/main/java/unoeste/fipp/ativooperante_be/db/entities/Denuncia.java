@@ -33,6 +33,7 @@ public class Denuncia {
     @JoinColumn(name = "usu_id", nullable = false)
     private Usuario usuario;
 
+
     public Denuncia() {
         this(0L, "", "", 0, null, null, null, null);
     }
@@ -86,5 +87,29 @@ public class Denuncia {
 
     public void setData(Date data) {
         this.data = data;
+    }
+
+    public Orgao getOrgao() {
+        return orgao;
+    }
+
+    public void setOrgao(Orgao orgao) {
+        this.orgao = orgao;
+    }
+
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

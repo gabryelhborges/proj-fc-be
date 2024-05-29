@@ -68,6 +68,20 @@ public class CidadaoController {
         return ResponseEntity.ok(denuncias);
     }
 
+    @GetMapping("/get-denuncias-cidadao-com-feedback")
+    public ResponseEntity<Object> getAllDenunciasFeedback(@RequestParam Long userId){
+        Usuario user = usuarioService.consultaPorId(userId);
+        List<Denuncia> denuncias;
+        //denuncias= denunciaService.buscaPorUsuarioComFeed(user);
+
+        List<Feedback> feedbacks;
+        feedbacks= feedbackService.getAll();
+
+
+
+        return ResponseEntity.ok("");
+    }
+
     @GetMapping("/get-all-tipos")
     public ResponseEntity<Object> getAllTipos(){
         return ResponseEntity.ok(tipoService.getAll());
